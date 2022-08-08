@@ -17,3 +17,46 @@ As an example, for the World Pendulum equipped with a dsPIC33F the part of the "
     </PgmIf>
 </Config>
 ```
+In the general elab case, using a dsPIC 3.0 development board based on the dsPIC30F equipped with the optoisolated programmer, this file as a different pins assignation:
+
+```
+...    
+    </PgmIf>
+    <PgmIf name="GPIO Programmer (Raspberry Pi)" typ="LVP" connection="GPIO">
+        <PinCfg name="MCLR" pin="5" invert="1" />
+        <PinCfg name="PGM" pin="2" invert="0" />
+        <PinCfg name="CLK" pin="13" invert="0" />
+        <PinCfg name="DOUT" pin="19" invert="0" />
+        <PinCfg name="DIN" pin="26" invert="0" />
+    </PgmIf>
+</Config>
+```
+
+The pin number (pin="xx") corresponds to the GPIO pin number on the Raspberry Pi (see figure in dsPIC 33F section). The configuration example shown above is the one used to program the dsPIC of the World Pendulum Alliance.
+
+Once the configuration is set-up and the dsPIC is powered and connected to the Raspberry Pi, one can start loading the program (hexadecimal file) into the dsPIC memory. To correctly program the dsPIC, both the program memory and the config memory (special registers) must be programmed. Some devices also have an EEPROM memory. The config memory is programmed using the following command (in Linux):
+
+``` 
+sudo picpgm -p_cfg hexadecimalFile.hex
+``` 
+
+This will program the bit of the code corresponding to the "#pragma config" instructions. To load the program into the program memory, use the following command (in Linux):
+```
+sudo picpgm -p_code hexadecimalFile.hex
+```
+This command will write and check (read) the dsPIC memory to make sure that it has be written properly. If writing errors occurred, rerun the command and make sure that no external electrical interference affects the dsPIC during the programming process. For further option and usage of picpgm, simply run:
+```
+picpgm
+```
+and a help menu will appear.
+
+If the Raspberry Pi is to remain connected to the dsPIC, one has to make sure that the MCLR pin is set not active (3.3 V) to allow the dsPIC to run (no longer in reset state). To ensure such pin state on the RPi side, one can add the following command in a boot script, as shown below:
+```
+Bash file @ /etc/rc.local
+#The following lines should be added to file rc.local to allow the pic to run after RPI boot
+#The wiringpi package needs to be installed
+gpio -g mode 5 down
+gpio -g mode 2 down
+#For the picpgm configuration (pgmifcfg.xml) shown above it would correspond to pin 27:
+gpio -g mode 27 up
+```
