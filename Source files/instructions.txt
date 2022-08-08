@@ -1,0 +1,74 @@
+Procedure to create a new WPA project on MPLAB X IDE.
+The procedure described below was based on MPLAB X IDE v5.15.
+
+1. Open MPLAB X IDE
+
+2. File -> New Project
+
+ 2.1 Choose Project
+ 2.1.1 Categories: Microchip Embedded
+ 2.1.2 Projects: Standalone Project
+
+ 2.2 Select Device
+ 2.2.1 Family: 16-bit DSCs (dsPIC33)
+ 2.2.2 Device: dsPIC33FJ128MC804
+
+ 2.3 Select Tool (Optional)
+ 2.3.1 If you are using the picpgm software via the RaspberryPi to program the dsPic, you don't need to select a programming tool
+ 2.3.2 You can learn more on how to program the dsPic with picpgm on https://www.elab.tecnico.ulisboa.pt/wiki/index.php?title=DsPic-Raspberry_programmer_interface#Software_use
+
+ 2.4 Select Compiler
+ 2.4.1 Select XC16. If not available, it needs to be installed: https://microchipdeveloper.com/xc16:installation
+
+ 2.5 Select Project Name and Folder
+ 2.5.1 Project Name: wpa (for example)
+ 2.5.2 Project Location: (your choice)
+ 2.5.3 Leave the "Set as main project" tickbox set
+ 2.5.4 Keep the "Enconding" as it is (ISO-8859-1)
+ 2.5.5 Press Finish
+
+3. On the Projects tab, under the project name choosen above (wpa in this example), right click on "Source Files", then:
+ 3.1 Select Adding Existing Items...
+ 3.2 Select all the files with the extension .c or .s (you can use the "Files of type" filter option to more easily select them)
+ 3.3 At the end of the selection, the full list of source files should be:
+    adc.c
+    ball.c
+    d7seg_max7219.c
+    delays.c
+    etc.c
+    flash.c
+    laser.c
+    main.c
+    mcpwm.c
+    memory.s
+    msg.c
+    pendulum_N_osc.c
+    physical.c
+    shovel.c
+    state_machine.c
+    timers.c
+    traps.c
+
+4. Repeat a similar procedure as in 3. but for the "Header Files":
+ 4.1 Select all the files with the extension .h
+ 4.2 At the end of the selection, the full list of header files should be:
+    adc.h
+    ball.h
+    d7seg_max7219.h
+    delays.h
+    etc.h
+    flash.h
+    laser.h
+    mcpwm.h
+    memory.h
+    msg.h
+    pendulum_N_osc.h
+    physical.h
+    shovel.h
+    state_machine.h
+    timers.h
+    world_pendulum.h
+
+5. At this point, you can now "Clean and Build the Main Project", under "Production"
+ 5.1 This will create a new .hex file (see output log shell for location of the file, usually under ./wpa.X/dist/default/...)
+ 5.2 Use the new .hex file to update the dsPIC firmware
