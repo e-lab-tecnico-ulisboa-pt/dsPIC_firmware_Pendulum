@@ -1,4 +1,4 @@
-# dsPIC_firmware_Pendulum
+# [dsPIC_firmware_Pendulum](https://www.elab.tecnico.ulisboa.pt/wiki/index.php?title=Precision_Pendulum_Assembly:_Software_management#Source_files)
 
 With the help of a programmer software, the dspic can be programmed using the Raspberry Pi.
 
