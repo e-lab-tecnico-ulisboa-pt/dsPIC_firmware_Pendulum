@@ -65,4 +65,4 @@ gpio -g mode 27 up
 
 ## Source files
 
-On the folder `Source files` contains the source files corresponding to the WPA firmware version `2021_01_06_22_08_46`. A `instructions.txt` file containing a set of steps to guide the user on how to create a MPLAB X IDE project is also in the file. The date and time of the compilation is stored in the `.hex` file. This means that any firmware (`.hex`) files complied in different dates/times will differ from each other. This feature was introduced to allow a clear distinction of each newly created `.hex` file.
+On the folder `Source files` contains the source files corresponding to the WPA firmware version `2021_01_06_22_08_46`. The `instructions.txt` file contains a set of steps to guide the user on how to create a MPLAB X IDE project is also in the file. The date and time of the compilation is stored in the `.hex` file. This means that any firmware (`.hex`) files complied in different dates/times will differ from each other. This feature was introduced to allow a clear distinction of each newly created `.hex` file.
