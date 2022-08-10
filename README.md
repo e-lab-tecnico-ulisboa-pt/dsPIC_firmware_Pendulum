@@ -51,8 +51,10 @@ picpgm
 and a help menu will appear.
 
 If the Raspberry Pi is to remain connected to the dsPIC, one has to make sure that the MCLR pin is set not active (3.3 V) to allow the dsPIC to run (no longer in reset state). To ensure such pin state on the RPi side, one can add the following command in a boot script, as shown below:
-```
+
 Bash file @ /etc/rc.local
+
+```
 #The following lines should be added to file rc.local to allow the pic to run after RPI boot
 #The wiringpi package needs to be installed
 gpio -g mode 5 down
